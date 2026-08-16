@@ -1,0 +1,22 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+app=FastAPI();
+
+class Products(BaseModel):
+    name:str
+    price: int
+    warranty: int
+
+@app.post("/products")
+async def create_product(product:Products):
+    return {
+        "product_name":product.name,
+        "product_price": product.price,
+        "product_warranty": product.warranty
+    }
+
+
+
+
+
+
