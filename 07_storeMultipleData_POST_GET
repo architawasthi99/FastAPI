@@ -1,0 +1,34 @@
+class Products(BaseModel):
+    name:str
+    price: int
+    warranty: int
+
+product_list=[]
+
+@app.post("/products")
+async def create_product(product:list[Products]):
+    product_list.extend(product)
+    return product
+@app.get("/products")
+async def get_products():
+    return product_list
+
+
+#JSON
+[
+    {
+        "name": "Laptop",
+        "price": 50000,
+        "warranty": 2
+    },
+    {
+        "name": "Mobile",
+        "price": 30000,
+        "warranty": 1
+    },
+    {
+        "name": "Tablet",
+        "price": 25000,
+        "warranty": 2
+    }
+]
