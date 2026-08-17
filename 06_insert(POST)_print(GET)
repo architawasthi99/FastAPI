@@ -1,0 +1,18 @@
+class Products(BaseModel):
+    name:str
+    price: int
+    warranty: int
+
+product_list=[]
+
+@app.post("/products")
+async def create_product(product:Products):
+    product_list.append(product)
+    return {
+        "product_name":product.name,
+        "product_price": product.price,
+        "product_warranty": product.warranty
+    }
+@app.get("/products")
+async def get_products():
+    return product_list
