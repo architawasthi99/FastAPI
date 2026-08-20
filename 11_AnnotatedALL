@@ -1,0 +1,15 @@
+from typing import Annotated
+from pydantic import BaseModel, StringConstraints, ValidationError, validate_call
+class User(BaseModel):
+    username:Annotated[str,StringConstraints(min_length=3,max_length=20)]
+    age:int
+
+@validate_call
+def create_user(username:str,age:int):
+    return User(username=username, age=age)
+
+try:
+    user=create_user("archit","20")
+    print(user)
+except ValidationError as e:
+    print(e)
