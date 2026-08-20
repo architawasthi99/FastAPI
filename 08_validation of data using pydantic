@@ -1,0 +1,14 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class User(BaseModel):
+    name:str
+    age:int
+user_list=[]    
+@app.post("/users")
+def create_user(user:User):
+    user_list.append(user)
+    return user
+@app.get("/users")
+def get_user():
+    return user_list
