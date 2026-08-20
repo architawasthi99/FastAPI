@@ -1,0 +1,8 @@
+from pydantic import BaseModel, ValidationError
+class Users(BaseModel):
+    name:str
+    age:int
+try:
+    user=Users(name="archit",age="twenty")
+except ValidationError as e:
+    print(e.json())
