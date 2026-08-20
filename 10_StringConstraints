@@ -1,0 +1,5 @@
+from typing import Annotated
+from pydantic import BaseModel, StringConstraints
+class User(BaseModel):
+    name: Annotated[str,StringConstraints(min_length=3,
+           max_length=10,regex="^[a-zA-Z]+$")]
